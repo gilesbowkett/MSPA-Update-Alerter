@@ -10,3 +10,11 @@ The reality
 -----------
 
 I kind of have work to do.
+
+Note to self
+------------
+
+`rvm use ruby-1.9.2-p180@mspa`
+
+That should probably go in a .rvmrc file...
+
