@@ -16,3 +16,12 @@ Installation & Setup
 
 First run initialize_database.rb to create a SQLite DB with the appropriate schema, and populate it with the latest update from mspaintadventures.com. Then set up a cron job to run read_mspa.rb on some periodic interval. I recommend once a week, on Saturday, because it kind of gives you a Saturday morning cartoons from beyond the Mountains of Madness experience, but your mileage may vary, so season to taste.
 
+RSS
+---
+
+OK, turns out MSPA has an RSS feed:
+
+http://mspaintadventures.com/rss/rss.xml
+
+I prefer my method, but to each his own.
+
