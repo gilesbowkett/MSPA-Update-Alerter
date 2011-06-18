@@ -11,8 +11,19 @@ class Link < ActiveRecord::Base
   def page_number
     self.href.match(/p=([0-9]+)/)[1]
   end
+  def absolute_path
+    "http://mspaintadventures.com" + self.href
+  end
+
   def self.sorted
-    all.sort_by &:page_number
+    all.sort_by(&:page_number).reverse
+  end
+  def self.purge
+    # delete all except most recent
+    keeper = sorted.first
+    Link.all.each do |link|
+      link.destroy unless keeper == link
+    end
   end
 end
 
@@ -33,5 +44,12 @@ def check_web_page
 end
 
 check_web_page
-Link.sorted.reverse.each {|l| puts l.page_number}
+
+# launch links
+Link.sorted.each do |link|
+  system "open '#{link.absolute_path}'"
+end
+
+# delete everything but most recent link
+Link.purge
 
