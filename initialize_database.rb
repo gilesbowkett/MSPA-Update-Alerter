@@ -29,8 +29,7 @@ end
 
 # populate with current top link
 Mechanize.new.get("http://mspaintadventures.com") do |page|
-  # current_top = page.links[21] 
-  current_top = page.links[23] 
+  current_top = page.links[21] # magic number! see read_mspa.rb for details
   Link.create!(:href => current_top.href,
                :text => current_top.text)
 end
