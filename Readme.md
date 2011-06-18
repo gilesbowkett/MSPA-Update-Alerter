@@ -4,12 +4,15 @@ MSPA Update Detector
 The idea
 --------
 
-Rather than check mspaintadventures.com several times a day, have a cron job check it and alert you to new updates. The site maintains a list of "Latest Pages," separated by `<br>` elements. The plan is to screenscrape this list and store the first element in a database. Then, whenever the first element changes, grab all the new elements, and store the new first element in the database. Lather, rinse, repeat. Alert subscribers to the existence of a new page either via e-mail, or Twitter, or indeed even just opening a browser window.
+Rather than check mspaintadventures.com several times a day, have a cron job check it and alert you to new updates.
 
-I think I'll probably go with the browser window approach, and set it on a cron job to run at 6pm. This will help me break the habit of manually checking the site every freaking morning. Truth be told, it's actually more fun to read in batches anyway, and you can guarantee several updates per week, so I might even set the cron job to run on Saturdays or something.
+How It Works
+------------
 
-The reality
------------
+The site maintains a list of "Latest Pages," separated by `<br>` elements. The code screenscrapes this list and stores the first element in a database. Then, whenever the first element changes, it grabs all the new elements, opens them in your web browser, and then throws them all away, storing only the newest update in the database.
 
-I kind of have work to do.
+Installation & Setup
+--------------------
+
+First run initialize_database.rb to create a SQLite DB with the appropriate schema, and populate it with the latest update from mspaintadventures.com. Then set up a cron job to run read_mspa.rb on some periodic interval. I recommend once a week, on Saturday, because it kind of gives you a Saturday morning cartoons from hell experience, but your mileage may vary, so season to taste.
 
