@@ -45,9 +45,11 @@ end
 
 check_web_page
 
-# launch links
-Link.sorted.each do |link|
-  system "open '#{link.absolute_path}'"
+# launch links, but only if there's something new
+if Link.count > 1
+  Link.sorted.each do |link|
+    system "open '#{link.absolute_path}'"
+  end
 end
 
 # delete everything but most recent link
