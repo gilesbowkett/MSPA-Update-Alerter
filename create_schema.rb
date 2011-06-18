@@ -20,6 +20,7 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Schema.define do 
   create_table :links do |t|
     t.string :href, :text
+    t.timestamps
   end
 end
 
@@ -28,7 +29,8 @@ end
 
 # populate with current top link
 Mechanize.new.get("http://mspaintadventures.com") do |page|
-  current_top = page.links[21] 
+  # current_top = page.links[21] 
+  current_top = page.links[23] 
   Link.create!(:href => current_top.href,
                :text => current_top.text)
 end
