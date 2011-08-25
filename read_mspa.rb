@@ -29,6 +29,7 @@ end
 
 def gather_new_links(links)
   link = links.shift
+  return false unless link
   unless Link.where(:href => link.href).first
     Link.create!(:href => link.href, :text => link.text)
     gather_new_links(links)
@@ -38,10 +39,11 @@ end
 def check_web_page
   agent = Mechanize.new
   agent.get("http://mspaintadventures.com") do |page|
-    # magic numbers! links[21..65] represent all the "Latest Pages" links in the MSPA UI
-    gather_new_links(page.links[21..65])
+    # magic numbers! links[13..57] represent all the "Latest Pages" links in the MSPA UI
+    gather_new_links(page.links[13..57])
   end
 end
+
 
 check_web_page
 
